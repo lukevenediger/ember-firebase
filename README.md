@@ -1,26 +1,13 @@
 # Ember-firebase
 
-This README outlines the details of collaborating on this Ember addon.
+This is a shim over the Firebase javascript api. See https://www.firebase.com/docs/web/ for more details.
 
-## Installation
+## Ember Installation with ember-cli
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+* `ember install:npm ember-firebase`
+* `ember generate ember-firebase`
 
-## Running
+## Usage
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+* `import Firebase from 'firebase'`
 
-## Running Tests
-
-* `npm test` (Runs `ember try:testall` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
-
-## Building
-
-* `ember build`
-
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
