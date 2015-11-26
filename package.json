@@ -1,21 +1,26 @@
 {
   "name": "ember-firebase",
   "version": "0.0.1",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Ember CLI addon for the Firebase client (see https://www.firebase.com/docs/web/)",
   "directories": {
     "doc": "doc",
     "test": "tests"
   },
   "scripts": {
-    "build": "ember build",
-    "start": "ember server",
-    "test": "ember try:testall"
+    "test": "ember test"
   },
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lukevenediger/ember-firebase"
+  },
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
+  "author": {
+    "name": "Luke Venediger",
+    "email": "lukev@lukev.net",
+    "url": "https://github.com/lukevenediger"
+  },
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.2.0",
@@ -38,12 +43,26 @@
     "ember-try": "~0.0.8"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "firebase"
   ],
   "dependencies": {
     "ember-cli-babel": "^5.1.5"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
-  }
+  },
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "LICENSE.md",
+    "README.md",
+    "blueprints",
+    "vendor",
+    "addon",
+    "config",
+    "package.json",
+    ".jshintrc",
+    ".watchmanconfig"
+  ]
 }

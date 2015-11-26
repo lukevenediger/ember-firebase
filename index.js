@@ -5,6 +5,9 @@ module.exports = {
   name: 'ember-firebase',
   included: function(app) {
     app.import('bower_components/firebase/firebase.js');
-    app.import('vendor/ember-firebase/shim.js');
+    app.import('vendor/ember-firebase/shim.js', {
+      type: 'vendor',
+      exports: { 'firebase': ['default'] }
+    });
   }
 };
