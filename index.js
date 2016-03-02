@@ -4,6 +4,7 @@
 var Funnel = require('broccoli-funnel');
 var mergeTrees = require('broccoli-merge-trees');
 var path = require('path');
+var replace = require('broccoli-string-replace');
 
 module.exports = {
   name: 'ember-firebase',
@@ -25,7 +26,7 @@ module.exports = {
   },
 
   importBrowserDependencies: function(app) {
-    app.import('bower_components/firebase/firebase.js');
+    app.import('vendor/firebase-web.js');
     app.import('vendor/ember-firebase/shim.js', {
       type: 'vendor',
       exports: { 'firebase': ['default'] }
@@ -40,8 +41,35 @@ module.exports = {
     if (isFastBoot()) {
       return this.treeForNodeVendor(vendorTree);
     } else {
-      return vendorTree;
+      return this.treeForBrowserVendor(vendorTree);
     }
+  },
+
+  treeForBrowserVendor: function(vendorTree) {
+    var trees = [];
+
+    if (vendorTree) {
+      trees.push(vendorTree);
+    }
+
+    var libDir = path.dirname(require.resolve('firebase'));
+    var firebaseTree = new Funnel(libDir, {
+      files: ['firebase-web.js'],
+    });
+
+    // poor man's browserify
+    // we just need to get rid of the module.exports line and everything works
+    var replacedFirebaseTree = replace(firebaseTree, {
+      files: ['firebase-web.js'],
+      pattern: {
+        match: "module.exports = Firebase;",
+        replacement: ''
+      }
+    });
+
+    trees.push(replacedFirebaseTree);
+
+    return this._super.treeForVendor.call(this, mergeTrees(trees));
   },
 
   treeForNodeVendor: function(vendorTree) {
